@@ -1,0 +1,16 @@
+{
+  "tasks": [
+    {
+      "text": "Premier Post",
+      "day": "Friday 15th",
+      "reminder": true,
+      "id": 1
+    },
+    {
+      "text": "Deuxiéme Post",
+      "day": "Friday 15th",
+      "reminder": "",
+      "id": 2
+    }
+  ]
+}

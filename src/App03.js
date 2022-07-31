@@ -1,14 +1,11 @@
-//On rajoute le FOOTER && le Routage dans ADDTASK
+//Deuxiéme Partie (avec le BACK)
+//METHODE sans utiliser les fonctions
 
 import React, { useEffect, useState } from 'react';
 import AddTask from './pages/AddTask';
 import Header from './pages/Header';
 import Tasks from './pages/Tasks';
 import axios from 'axios';
-import Footer from './pages/Footer';
-
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import About from './components/Footer/About';
 
 const App = () => {
   const [showAddTask, setShowAddTask] = useState(false);
@@ -61,34 +58,21 @@ const App = () => {
   };
   return (
     <>
-      <BrowserRouter>
+      <div className="App">
         <div className="container">
           <Header
             title="Task Tracker"
             onAdd={() => setShowAddTask(!showAddTask)}
             showAdd={showAddTask}
           />
-
-          <Routes>
-            <Route
-              path="/"
-              element={
-                <>
-                  {showAddTask && <AddTask onAdd={addTask} />}
-                  {tasks.length > 0 ? (
-                    <Tasks tasks={tasks} onDelete={deleteTask} onToggle={onToggle} />
-                  ) : (
-                    'No tasks'
-                  )}
-                </>
-              }
-            />
-            <Route path="/about" element={<About />} />
-          </Routes>
-
-          <Footer />
+          {showAddTask && <AddTask onAdd={addTask} />}
+          {tasks.length > 0 ? (
+            <Tasks tasks={tasks} onDelete={deleteTask} onToggle={onToggle} />
+          ) : (
+            'No tasks'
+          )}
         </div>
-      </BrowserRouter>
+      </div>
     </>
   );
 };

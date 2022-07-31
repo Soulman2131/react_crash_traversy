@@ -1,70 +1,59 @@
-# Getting Started with Create React App
+### Projet REACT JS CRASH COURSE de Traversy
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+//
+CD CRASH2 => NPX CREATE-REACT-APP .
 
-## Available Scripts
+### PREMIERE PARTIE APP01.JS
 
-In the project directory, you can run:
+- On crée en Premier aprés avoir rajouté INDEX.CSS dans INDEX.JS, le HEADER dans PAGES
+  Et dans le HEADER, on aura le component BUTTON.JS avec son click
 
-### `npm start`
+- On crée ensuite la page TASKS. On lui transfére la data tasks qui se trouve à APP.JS
+  Le TASKS aura le component TASK. On ppouvait lui faire le onclick sur sa page mais on a trop de fonctions, alors on va tout mettre sur APP
+  Du coup, on aura :
+- deleteTASK => pour vérifier log('delete', 1)
+- toggleReminder => pour vérifier console + component + TASK (on rque le reminder est true puis passe false au dblclik)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- On crée la page ADDTASK avec son props
+  Une fois créée, on s'oqp du SHOWADDTASK avec son const [] pour faire disparaitre le component BUTTON du HEADER.
+  💕👌 Et pour cela, le showAddTask dans le ADDTASK ET LE SETSHOWADDTASK DANS LE HEADER
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### DEUXIEME PARTIE APP02.JS (On va faire le BACK avec JSON-SERVER)
 
-### `npm test`
+##On teste le BACKEND
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+**Primero (pas obligé de le faire)**
+On teste le =>
+NPM RUN BUILD
+NPM I -G SERVE => 💕👌 NPX SERVE -S BUILD -P 8000
 
-### `npm run build`
+**Secondero (obligé de le faire)**
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Puis on l'arrete pour aller aux choses sérieuses sur google 'JSON SERVER' (n'oublions pas d'installer l'extension GREPPER 💕👌) => On aura
+=> https://github.com/typicode/json-server
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+c'est à dire comment l'installer (npm install -g json-server && ensuite aller dans PACKAGE JSON taper
+=> 💕👌 "backend": "json-server --watch db.json --port 5000 "), créer le db.json(à coté de .gitignore) & le lancer avec =>
+json-server --watch db.json
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## CONCLUSION
 
-### `npm run eject`
+On a lancé deux serveurs : NPM RUN BACKEND && NPM RUN START
+On va les associer avec AXIOS
+Puis on fait le USEEFFECT où on aura le GET-ALL, ensuite le deleteTASK (DELETE) puis le addTask (POST) && le TOGGLE(GET-SINGLE && PUT)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+####
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Sur la derniere partie, on fait le FOOTER (il aura 2 fichiers Footer & About)
+NPM I REACT-ROUTER-DOM pour le LINK
+La Route sera entre le HEADER 11 LE FOOTER
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Pour terminer, on mettra dans HEADER02, le useLOCATION pour faire disparaitre le BUTTON SI ON EST SUR LE '/ABOUT'
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+# CSS in REACT
 
-## Learn More
+Si on veut le CSS directement sur la page, on peut mettre <h1 style={headingStyle} > && tout en bas aprés les accolades du "const Header = () {} " mettre const headingStyle = {color: red, backgroundColor: black}
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+# IMPLEMENTER ICONS
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+NPM I REACT-ICONS

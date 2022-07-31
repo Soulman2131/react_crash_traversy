@@ -1,29 +1,41 @@
-//On rajoute le FOOTER && le Routage dans ADDTASK
-
+//Premiére Partie (sans le BACK)
 import React, { useEffect, useState } from 'react';
 import AddTask from './pages/AddTask';
 import Header from './pages/Header';
 import Tasks from './pages/Tasks';
 import axios from 'axios';
-import Footer from './pages/Footer';
-
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import About from './components/Footer/About';
 
 const App = () => {
   const [showAddTask, setShowAddTask] = useState(false);
+
   const [tasks, setTasks] = useState([]);
 
-  //USE EFFECT
   useEffect(() => {
-    axios
-      .get('http://localhost:5000/tasks')
-      .then(res => {
-        setTasks(res.data);
-        // console.log(res.data);
-      })
-      .catch(err => console.log(err));
+    const getTasks = async () => {
+      const getFetchTasks = await fetchTasks();
+      setTasks(getFetchTasks);
+      // console.log(getFetchTasks);
+    };
+
+    getTasks();
   }, []);
+
+  //FONCTION FETCH
+  //Fonction FETCH
+  const fetchTasks = async () => {
+    const res = await axios.get('http://localhost:5000/tasks');
+    const data = res.data;
+    // console.log(data);
+    return data;
+  };
+
+  //Fonction FETCH ID
+  const fetchTask = async id => {
+    const res = await axios.get(`http://localhost:5000/tasks/${id}`);
+    const data = res.data;
+    console.log(data);
+    return data;
+  };
 
   //ADD TASK
   const addTask = data => {
@@ -37,14 +49,6 @@ const App = () => {
     axios.delete(`http://localhost:5000/tasks/${id}`).then(() => {
       setTasks(tasks.filter(task => task.id !== id));
     });
-  };
-
-  //Fonction FETCH ID
-  const fetchTask = async id => {
-    const res = await axios.get(`http://localhost:5000/tasks/${id}`);
-    const data = res.data;
-    // console.log(data);
-    return data;
   };
 
   //ON TOGGLE
@@ -61,34 +65,21 @@ const App = () => {
   };
   return (
     <>
-      <BrowserRouter>
+      <div className="App">
         <div className="container">
           <Header
             title="Task Tracker"
             onAdd={() => setShowAddTask(!showAddTask)}
             showAdd={showAddTask}
           />
-
-          <Routes>
-            <Route
-              path="/"
-              element={
-                <>
-                  {showAddTask && <AddTask onAdd={addTask} />}
-                  {tasks.length > 0 ? (
-                    <Tasks tasks={tasks} onDelete={deleteTask} onToggle={onToggle} />
-                  ) : (
-                    'No tasks'
-                  )}
-                </>
-              }
-            />
-            <Route path="/about" element={<About />} />
-          </Routes>
-
-          <Footer />
+          {showAddTask && <AddTask onAdd={addTask} />}
+          {tasks.length > 0 ? (
+            <Tasks tasks={tasks} onDelete={deleteTask} onToggle={onToggle} />
+          ) : (
+            'No tasks'
+          )}
         </div>
-      </BrowserRouter>
+      </div>
     </>
   );
 };
